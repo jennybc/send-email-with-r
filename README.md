@@ -91,8 +91,6 @@ ret_val <- send_message(test_email)
 ret_val$status_code 
 ```
 
-    ## Auto-refreshing stale OAuth token.
-
     ## [1] 200
 
 Is the status code 200? Did your email get through? **Do not proceed until the answer is YES to both questions**.
@@ -104,7 +102,7 @@ BTW you can add members to your project from "Permissions" in Google Developers 
 Compose and send your emails
 ----------------------------
 
-The hard parts are over! See [`send-email-with-r.r`](send-email-with-r.r) for clean code to compose and send email. Here's the guided tour.
+The hard parts are over! See [`send-email-with-r.R`](send-email-with-r.R) for clean code to compose and send email. Here's the guided tour.
 
 The file [`addresses.csv`](addresses.csv) holds names and email addresses. The file [`marks.csv`](marks.csv) holds names and homework marks. (In this case, the LoTR characters receive marks based on the number of words they spoke in the Fellowship of the Ring.) Read those in and join.
 
