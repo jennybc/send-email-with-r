@@ -56,7 +56,7 @@ Gmail set-up inspired by the helpful [`gmailr` vignette](http://cran.r-project.o
 
             gmailr-tutorial.json
 
-Let's do a dry run before we try to send real emails. See [`dryrun.r`](dryrun.r) for code.
+Let's do a dry run before we try to send real emails. See [`dryrun.R`](dryrun.R) for code.
 
 Load `gmailr`, call `gmail_auth()` function with the credentials stored in JSON, and declare your intent to compose an email.
 
@@ -90,6 +90,8 @@ test_email <- mime(
 ret_val <- send_message(test_email)
 ret_val$status_code 
 ```
+
+    ## Auto-refreshing stale OAuth token.
 
     ## [1] 200
 
