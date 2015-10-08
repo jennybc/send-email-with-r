@@ -42,6 +42,5 @@ saveRDS(sent_mail,
         paste(gsub("\\s+", "_", this_hw), "sent-emails.rds", sep = "_"))
 
 sent_mail %>%
-  map("status_code") %>%
-  unlist() %>%
-  all()
+  map_int("status_code") %>%
+  unique()
