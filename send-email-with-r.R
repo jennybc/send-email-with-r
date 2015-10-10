@@ -8,8 +8,8 @@ marks <- read_csv("marks.csv")
 my_dat <- left_join(marks, addresses)
 
 this_hw <- "The Fellowship Of The Ring"
-email_sender <- 'Peter Jackson <peter@tolkien.com>' # this is your Gmail address
-optional_bcc <- 'Anonymous <anon@palantir.org>'     # this might be a TA for me
+email_sender <- 'Peter Jackson <peter@tolkien.example.com>' # your Gmail address
+optional_bcc <- 'Anonymous <anon@palantir.example.org>'     # for me, TA address
 body <- "Hi, %s.
 
 Your mark for %s is %s.
