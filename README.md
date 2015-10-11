@@ -91,6 +91,8 @@ ret_val <- send_message(test_email)
 ret_val$status_code 
 ```
 
+    ## Auto-refreshing stale OAuth token.
+
     ## [1] 200
 
 Is the status code 200? Did your email get through? **Do not proceed until the answer is YES to both questions**.
@@ -195,7 +197,7 @@ We use the `gmailr::mime()` function to convert each row of this data.frame into
 
 ``` r
 emails <- edat %>%
-  map_rows(lift(mime), .labels = FALSE) %>% 
+  map_rows(mime, .labels = FALSE) %>% 
   ## wonder if can name the new variable something other than '.out'?
   rename(mime = .out)
 str(emails, max.level = 2, list.len = 2)

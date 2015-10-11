@@ -29,7 +29,7 @@ edat
 write_csv(edat, "composed-emails.csv")
 
 emails <- edat %>%
-  map_rows(lift(mime), .labels = FALSE) %>%
+  map_rows(mime, .labels = FALSE) %>%
   rename(mime = .out)
 emails <- emails$mime
 
