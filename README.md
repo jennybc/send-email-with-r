@@ -197,28 +197,26 @@ We use the `gmailr::mime()` function to convert each row of this data.frame into
 
 ``` r
 emails <- edat %>%
-  map_rows(mime, .labels = FALSE) %>% 
-  ## wonder if can name the new variable something other than '.out'?
-  rename(mime = .out)
+  map_n(mime)
 str(emails, max.level = 2, list.len = 2)
 ```
 
-    ## Classes 'tbl_df' and 'data.frame':   34 obs. of  2 variables:
-    ##  $ mime:List of 34
-    ##   ..$ :List of 4
+    ## List of 34
+    ##  $ :List of 4
+    ##   ..$ parts : list()
+    ##   ..$ header:List of 6
     ##   .. .. [list output truncated]
-    ##   .. ..- attr(*, "class")= chr "mime"
-    ##   ..$ :List of 4
-    ##   .. .. [list output truncated]
-    ##   .. ..- attr(*, "class")= chr "mime"
     ##   .. [list output truncated]
-    ##  $     : NULL
+    ##   ..- attr(*, "class")= chr "mime"
+    ##  $ :List of 4
+    ##   ..$ parts : list()
+    ##   ..$ header:List of 6
+    ##   .. .. [list output truncated]
+    ##   .. [list output truncated]
+    ##   ..- attr(*, "class")= chr "mime"
+    ##   [list output truncated]
 
 ``` r
-## why do I get an unnamed 2nd variable that is NULL?
-## actually I just want the list of mime objects, not a data.frame
-emails <- emails$mime
-
 ## plyr code to do similar: Option A
 # emails <- plyr::dlply(edat, ~ To, function(x) mime(
 #   To = x$To,
