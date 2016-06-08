@@ -8,7 +8,7 @@ marks <- read_csv("marks.csv")
 my_dat <- left_join(marks, addresses)
 
 this_hw <- "The Fellowship Of The Ring"
-email_sender <- 'Peter Jackson <peter@tolkien.example.com>' # your Gmail address
+email_sender <- 'Peter Jackson <peter@tolkien.example.org>' # your Gmail address
 optional_bcc <- 'Anonymous <anon@palantir.example.org>'     # for me, TA address
 body <- "Hi, %s.
 
@@ -31,14 +31,18 @@ write_csv(edat, "composed-emails.csv")
 emails <- edat %>%
   map_n(mime)
 
-## for interactive use, if credentials not cached
-#gmail_auth("gmailr-tutorial.json", scope = 'compose')
+## optional: use if you've created your own client id
+use_secret_file("gmailr-tutorial.json")
 
+safe_send_message <- safely(send_message)
 sent_mail <- emails %>%
-  map(send_message)
+  map(safe_send_message)
+
 saveRDS(sent_mail,
         paste(gsub("\\s+", "_", this_hw), "sent-emails.rds", sep = "_"))
 
-sent_mail %>%
-  map_int("status_code") %>%
-  unique()
+errors <- sent_mail %>%
+  transpose() %>%
+  .$error %>%
+  map_lgl(Negate(is.null))
+sent_mail[errors]

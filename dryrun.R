@@ -1,7 +1,7 @@
 library(gmailr)
 
 ## edit line below to reflect YOUR json credential filename
-gmail_auth("gmailr-tutorial.json", scope = 'compose')
+use_secret_file("gmailr-tutorial.json")
 
 ## edit below with email addresses from your life
 test_email <- mime(
@@ -10,9 +10,6 @@ test_email <- mime(
   Subject = "this is just a gmailr test",
   body = "Can you hear me now?")
 
-ret_val <- send_message(test_email)
+send_message(test_email)
 
-## you want to see 200 here
-ret_val$status_code
-
-## and you want the email to arrive succesfully!
+## verify that the email arrives succesfully!
