@@ -29,7 +29,7 @@ edat
 write_csv(edat, "composed-emails.csv")
 
 emails <- edat %>%
-  map_n(mime)
+  pmap(mime)
 
 ## optional: use if you've created your own client id
 use_secret_file("gmailr-tutorial.json")
